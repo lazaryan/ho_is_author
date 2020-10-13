@@ -1,0 +1,13 @@
+{
+  "name": "ho_is_author",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-all": "cd backend && npm i && cd ../frontend && npm i",
+    "back": "cd backend && npm start"
+  },
+  "author": "Lazaryan S.K.",
+  "license": "ISC"
+}
