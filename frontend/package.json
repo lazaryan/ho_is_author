@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "static": "gulp --mode=development",
+    "static:prod": "gulp --mode=production",
+    "react": "webpack",
+    "react:server": "webpack-dev-server",
+    "react:prod": "webpack --mode=production",
+    "build": "node -v && npm -v && gulp --mode=production && webpack --mode=production"
   },
   "author": "",
   "license": "ISC",

@@ -1,0 +1,32 @@
+{
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    },
+    "ignorePatterns": ["*.esm.js", "*.esm.*.js"], // ignore side libs
+    "parser": "babel-eslint",
+    "plugins": [
+        "react"
+    ],
+    "overrides": [
+      {
+        "files": ["*.test.*"],
+        "env": {
+          "jest/globals": true
+        },
+        "plugins": ["jest"]
+      }
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "rules": {
+      "no-console": "off",
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "warn", // TODO throw error
+      "react/display-name": "warn", // TODO throw error
+      "no-unused-vars": "warn" // TODO throw error
+    }
+}
