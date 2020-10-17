@@ -1,12 +1,26 @@
-const { handleApi } = require('./controllers/api')
+const { login, register } = require('./controllers/api')
 const { handleStaticApp } = require('./controllers/static')
 const { handleReact } = require('./controllers/react')
 
+
+const isLoggedIn = (req, res, next) => {
+    if(req.isAuthenticated()) {
+        return next();
+    }
+
+    res.redirect('/login');
+}
+
 const routes = [
     {
-        path: '/api/*',
-        method: 'all',
-        action: handleApi
+        path: '/api/login',
+        method: 'post',
+        action: login
+    },
+    {
+        path: '/api/register',
+        method: 'post',
+        action: register
     },
     {
         path: '/login',
@@ -21,13 +35,19 @@ const routes = [
     {
         path: '/create',
         method: 'get',
+        middleware: isLoggedIn,
         action: handleReact
     },
     {
         path: '/',
         method: 'get',
+        middleware: isLoggedIn,
         action: handleReact
     }
 ]
 
-module.exports = routes
+module.exports = (app, passport) => {
+    routes.forEach(({ path, method, middleware = [], action }) =>
+        app[method](path, middleware, (...args) => action(passport, ...args))
+    )
+}

@@ -1,13 +1,25 @@
-const { app } = require('./server')
-const config = require('../configs/server')
+mongoose = require('mongoose')
 
-if (!config) {
+const { app } = require('./server')
+const server = require('../configs/server')
+const database = require('../configs/database')
+
+if (!server) {
     throw new Error('Config file configs/server.js not found!');
 }
 
+if (!database) {
+    throw new Error('Config file configs/database.js not found!');
+}
+
+mongoose.connect(database.db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+
 try {
-    app.listen(config.port, () => {
-        console.log(`Application run on port ${config.port}`)
+    app.listen(server.port, () => {
+        console.log(`Application run on port ${server.port}`)
     })
 } catch(err) {
     process.exitCode = 1

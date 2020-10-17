@@ -1,6 +1,6 @@
 module.exports = (passport, req, res) => {
-    return passport.authenticate('login',{
+    return passport.authenticate('register',{
         successRedirect : '/',
-        failureRedirect : '/login'
+        failureRedirect : '/register'
     })
 }
