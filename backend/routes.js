@@ -1,11 +1,27 @@
-const { handleReact, reactApps } = require('./controllers/react')
+const { handleStaticApp } = require('./controllers/static')
+const { handleReact } = require('./controllers/react')
 
 const routes = [
-    ...reactApps.map(app => ({
-        path: `/${app}`,
+    {
+        path: '/login',
+        method: 'get',
+        action: handleStaticApp
+    },
+    {
+        path: '/register',
+        method: 'get',
+        action: handleStaticApp
+    },
+    {
+        path: '/create',
         method: 'get',
         action: handleReact
-    }))
+    },
+    {
+        path: '/',
+        method: 'get',
+        action: handleReact
+    }
 ]
 
 module.exports = routes
