@@ -6,6 +6,7 @@ const morgan = require('morgan')
 const passport = require('passport')
 const session = require('express-session')
 const flash = require('connect-flash')
+const uuid = require('uuid')
 
 const path = require('path')
 const fs = require('fs')
@@ -26,7 +27,7 @@ app.use(bodyParser.json({ strict: false }))
 app.use(morgan('combined', { stream: accessLogStream }))
 app.use(flash())
 app.use(session({
-    secret:'secretword',
+    secret: uuid.v4(),
     saveUninitialized: true,
     resave: true
 }))

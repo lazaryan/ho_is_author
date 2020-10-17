@@ -1,5 +1,6 @@
 const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy;
+const LocalStrategy = require('passport-local').Strategy
+const uuid = require('uuid')
 
 const User = require('../models/user')
 
@@ -32,6 +33,7 @@ module.exports = function(passport){
 
                 newUser.email = email
                 newUser.password = newUser.generateHash(password)
+                newUser.entity_id = uuid.v4()
 
                 newUser.save(err => {
                     if(err) {
@@ -49,7 +51,7 @@ module.exports = function(passport){
         passwordField: 'password',
         passReqToCallback:true
     },
-    (req,email, password, done) => {
+    (req, email, password, done) => {
         User.findOne({ email }, (err, user) => {
             if (err) {
                 return done(err)

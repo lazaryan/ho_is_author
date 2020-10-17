@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
+    "bcrypt": "5.0.0",
     "body-parser": "1.19.0",
     "cookie-parser": "1.4.5",
     "cors": "2.8.5",
@@ -20,7 +20,8 @@
     "mongoose": "5.10.9",
     "passport": "0.4.1",
     "passport-jwt": "4.0.0",
-    "passport-local": "1.0.0"
+    "passport-local": "1.0.0",
+    "uuid": "8.3.1"
   },
   "devDependencies": {
     "connect-flash": "0.1.1",
