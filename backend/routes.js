@@ -1,7 +1,13 @@
+const { handleApi } = require('./controllers/api')
 const { handleStaticApp } = require('./controllers/static')
 const { handleReact } = require('./controllers/react')
 
 const routes = [
+    {
+        path: '/api/*',
+        method: 'all',
+        action: handleApi
+    },
     {
         path: '/login',
         method: 'get',

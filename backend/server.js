@@ -13,6 +13,8 @@ const { handleErrorInternal, handleErrorNotFound } = require('./controllers/erro
 // create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 
+require('./middlewares/passport')
+
 const app = express()
 
 app.use(cors())
