@@ -12,6 +12,7 @@ if (!database) {
     throw new Error('Config file configs/database.js not found!');
 }
 
+mongoose.set('useCreateIndex', true)
 mongoose.connect(database.db, {
     useNewUrlParser: true,
     useUnifiedTopology: true
