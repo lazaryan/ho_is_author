@@ -1,4 +1,4 @@
-const { login, register } = require('./controllers/api')
+const { login, register, logout } = require('./controllers/api')
 const { handleStaticApp } = require('./controllers/static')
 const { handleReact } = require('./controllers/react')
 
@@ -16,6 +16,11 @@ const routes = [
         path: '/api/login',
         method: 'post',
         action: login
+    },
+    {
+        path: '/api/logout',
+        method: 'get',
+        action: logout
     },
     {
         path: '/api/register',
@@ -47,9 +52,7 @@ const routes = [
 ]
 
 module.exports = (app, passport) => {
-    routes.forEach(({ path, method, middleware = undefined, action }) =>
-    middleware
-        ? app[method](path, middleware, (...args) => action(passport, ...args))
-        : app[method](path, (...args) => action(passport, ...args))
+    routes.forEach(({ path, method, middleware = [], action }) =>
+        app[method](path, middleware, (...args) => action(passport, ...args))
     )
 }
