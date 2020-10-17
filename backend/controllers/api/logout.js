@@ -1,4 +1,4 @@
-module.exports = (passport, req, res, next) => {
+module.exports = ({ req, res }) => {
     req.logout()
     res.redirect('/')
 }

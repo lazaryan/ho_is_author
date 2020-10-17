@@ -9,7 +9,7 @@ document.querySelector('.js-form__submit')?.addEventListener('click', () => {
     if (!Object.values(data).every(Boolean)) {
         alert('Не все поля заполнены!')
     } else {
-        axios.post(`/api/login`, JSON.stringify(data), {
+        axios.post(`/api/user/login`, JSON.stringify(data), {
             headers: {
                 'Content-Type': 'application/json'
             }

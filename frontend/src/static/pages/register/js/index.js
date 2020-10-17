@@ -9,7 +9,7 @@ document.querySelector('.js-form__submit')?.addEventListener('click', () => {
     if (!Object.values(data).every(Boolean)) {
         alert('Не все поля заполнены!')
     } else {
-        axios.post(`/api/register`, data)
+        axios.post(`/api/user/register`, data)
             .then(({ data }) => {
                 window.location.pathname = '/'
             })
