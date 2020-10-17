@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="/static/login/glob/styles/main.css">
+    <link rel="stylesheet" href="/static/login/glob/styles/form.css">
+
+    <script async src="/static/login/glob/libs/axios/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+</head>
+<body>
+    <div class="wrapper wrapper_center">
+        <div class="form login-form">
+            <div class="form__body">
+                <div class="form__header">
+                    <p class="form__title">Авторизация</p>
+                </div>
+                <div style="width: 80%; margin-bottom: 30px;">
+                    <a href="/">
+                        <button class="form-submit form-submit_unaccent">На главную</button>
+                    </a>
+                </div>
+                <div class="form__item">
+                    <input type="text" name="email" id="email" data-name="Почта" class="form__item-field js-form__item-field js-form-require">
+                    <label class="form__item-title form__item-title_left" for="email">Почта</label>
+                </div>
+                <div class="form__item">
+                    <input type="password" name="password" id="password" data-name="Пароль" class="form__item-field js-form__item-field js-form-require">
+                    <label class="form__item-title form__item-title_left" for="email">Пароль</label>
+                </div>
+                <div class="column_center">
+                    <button class="form-submit js-form__submit">Войти</button>
+                    <a href="/register" class="link">Зарегистрироваться</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/login/js/index.js"></script>
+</body>
+</html>

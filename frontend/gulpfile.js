@@ -24,7 +24,7 @@ if(app_name && !fs.existsSync(`${apps_path}/${app_name}`))
     throw new Error('Not active app!')
 
 const input = `${apps_path}/${app_name || '**'}`
-const output = `./build${app_name ? `/${app_name}` : ''}`
+const output = `../build${app_name ? `/${app_name}` : ''}`
 
 const IsDevelopment = (process.env.NODE_ENV = yargs.mode || 'development') === 'development'
 

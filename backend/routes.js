@@ -47,7 +47,9 @@ const routes = [
 ]
 
 module.exports = (app, passport) => {
-    routes.forEach(({ path, method, middleware = [], action }) =>
-        app[method](path, middleware, (...args) => action(passport, ...args))
+    routes.forEach(({ path, method, middleware = undefined, action }) =>
+    middleware
+        ? app[method](path, middleware, (...args) => action(passport, ...args))
+        : app[method](path, (...args) => action(passport, ...args))
     )
 }

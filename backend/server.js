@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const morgan = require('morgan')
 const passport = require('passport')
+const session = require('express-session')
 const flash = require('connect-flash')
 
 const path = require('path')
@@ -24,6 +25,11 @@ app.use('/static', express.static(path.resolve('../', 'build')))
 app.use(bodyParser.json({ strict: false }))
 app.use(morgan('combined', { stream: accessLogStream }))
 app.use(flash())
+app.use(session({
+    secret:'secretword',
+    saveUninitialized: true,
+    resave: true
+}))
 app.use(passport.initialize())
 app.use(passport.session())
 
