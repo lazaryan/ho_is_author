@@ -77,9 +77,10 @@ export const icons = {
         spinner: loadIcon(require('./icons/spinner.svg'), { color: '#fff' }),
     },
     blue: {
-        checkbox_off: loadIcon(require('./icons/checkbox_off.svg'), { color: '#fff' }),
-        checkbox_on: loadIcon(require('./icons/checkbox_on.svg'), { color: '#fff' }),
-        radio_off: loadIcon(require('./icons/radio_off.svg'), { color: '#fff' }),
-        radio_on: loadIcon(require('./icons/radio_on.svg'), { color: '#fff' }),
+        checkbox_off: loadIcon(require('./icons/checkbox_off.svg'), { color: '#2889f1' }),
+        checkbox_on: loadIcon(require('./icons/checkbox_on.svg'), { color: '#2889f1' }),
+        radio_off: loadIcon(require('./icons/radio_off.svg'), { color: '#2889f1' }),
+        radio_on: loadIcon(require('./icons/radio_on.svg'), { color: '#2889f1' }),
+        user: loadIcon(require('./icons/user.svg'), { color: '#2889f1' }),
     }
 }

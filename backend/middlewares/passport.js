@@ -31,9 +31,13 @@ module.exports = function(passport){
             } else {
                 const newUser = new User()
 
+                const { name } = req.body
+
                 newUser.email = email
                 newUser.password = newUser.generateHash(password)
                 newUser.entity_id = uuid.v4()
+
+                name && (newUser.name = name)
 
                 newUser.save(err => {
                     if(err) {

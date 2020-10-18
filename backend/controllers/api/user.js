@@ -6,7 +6,8 @@ module.exports = ({ req, res }) => {
     }
 
     isAuthenticated && (data.user = {
-        email: req.user.email
+        email: req.user.email,
+        name: req.user.name
     })
 
     res.send(data)

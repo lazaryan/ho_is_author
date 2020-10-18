@@ -13,6 +13,8 @@ const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 const fs = require('fs')
 const path = require('path')
 
+const backend_configs = require('../configs/server')
+
 const react_path = path.resolve('./src/react')
 const apps_path = path.resolve(`${react_path}/src`)
 const output_path = path.resolve('../build/main')
@@ -144,6 +146,9 @@ module.exports = {
         overlay: true,
         disableHostCheck: true,
         historyApiFallback: true,
+        proxy: is_mocking ? {} : {
+            '/': `http://localhost:${backend_configs ? backend_configs.port : '4000'}`
+        },
         before(app) {
             if (is_mocking) {
                 const mock = fs.existsSync(`${apps_path}/mock.js`) && require(`${apps_path}/mock.js`)
