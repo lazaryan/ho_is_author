@@ -1,13 +1,17 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
-const historySchema = mongoose.Schema({
+const historySchema = new mongoose.Schema({
     entity_id: {
         type: String,
         unique: true
     },
     author_id: String,
-    title: String,
-    description: String
+    name: String,
+    description: String,
+    created: String,
+    authors: String,
+    keywords: String,
+    cards: String
 })
 
-module.exports = mongoose.model('History', historySchema)
+export default mongoose.model('History', historySchema)

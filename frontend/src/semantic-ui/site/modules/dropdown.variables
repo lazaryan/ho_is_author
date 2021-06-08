@@ -1,0 +1,12 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@borderColor: @gray65;
+
+@selectionBorderColor: @borderColor;
+@selectionHoverBorderColor: @selectedBorderColor;
+@selectionFocusBorderColor: @gray55;
+@selectionVisibleBorderColor: @gray55;
+@selectionActiveHoverBorderColor: @gray55;
+

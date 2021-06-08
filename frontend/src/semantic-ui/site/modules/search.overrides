@@ -1,0 +1,6 @@
+.ui.search {
+  .results {
+    max-height: 300px;
+    overflow: auto;
+  }
+}

@@ -1,0 +1,40 @@
+.ui.menu.secondary.pointing {
+  .item {
+    color: @gray55;
+  }
+}
+
+.ui.menu.attached:not(.tabular) {
+  align-items: center;
+  border: none;
+  margin-bottom: @spacingUnit * 3;
+  justify-content: center;
+
+  .item {
+    border-top: 2px solid @gray75;
+    border-bottom: 2px solid @gray75;
+
+    &::before {
+      content: none;
+    }
+
+    &:first-child {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-left: 2px solid @gray75;
+    }
+
+    &:last-child {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border-right: 2px solid @gray75;
+    }
+
+    &.active {
+      border: 3px solid @primaryColor;
+      padding: @spacingUnit * 4;
+      background: transparent;
+      border-radius: 5px;
+    }
+  }
+}

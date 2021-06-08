@@ -1,0 +1,22 @@
+/* многие стили навешиваются на body, поэтому их пришлось продублировать */
+
+&.animating.in.dimmable,
+&.dimmed.dimmable {
+  overflow: hidden!important;
+}
+
+&.dimmable > .dimmer {
+  position: fixed!important;
+}
+
+&.scrolling.dimmable {
+  &.dimmed > .dimmer {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  & > .dimmer {
+    position: fixed;
+    justify-content: flex-start;
+  }
+}

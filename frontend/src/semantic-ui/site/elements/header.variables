@@ -1,0 +1,22 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@fontWeight: normal;
+@textTransform: none;
+
+@margin: 0 0 @spacingUnit * 4 0;
+
+/* HTML Headings */
+@h1: 50px;
+@h2: 1.2rem;
+@h3: 1rem;
+@h4: 0.9rem;
+@h5: 0.8rem;
+
+/* Sizing */
+@huge: 50px;
+@large: 1.2em;
+@medium: 1em;
+@small: 0.9em;
+@tiny: 0.8em;

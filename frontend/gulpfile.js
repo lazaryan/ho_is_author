@@ -1,109 +1,146 @@
-const yargs = require('yargs').argv
-const gulp = require('gulp')
-const watch = require('gulp-watch')
-const browserSync = require('browser-sync')
-const plumber = require('gulp-plumber')
-const less = require('gulp-less')
-const gulpif = require('gulp-if')
-const autoprefixer = require('gulp-autoprefixer')
-const styleLint = require('gulp-stylelint')
-const uglify = require('gulp-uglify-es').default
-const babel = require('gulp-babel')
-const postcss = require('gulp-postcss')
-const glob = require('glob')
-
 const path = require('path')
-const fs = require('fs')
+const rimraf = require('rimraf')
+const execa = require('execa')
+const browserSync = require('browser-sync')
+const gulp = require('gulp')
+const gulpIf = require('gulp-if')
+const watch = require('gulp-watch')
+const templates = require('gulp-template')
+const htmlMin = require('gulp-htmlmin')
+const plumber = require('gulp-plumber')
+const babel = require('gulp-babel')
+const uglify = require('gulp-uglify')
 
-const src_path = path.resolve('./src/static')
-const apps_path = path.resolve(`${src_path}/pages`)
-const glob_path = `${src_path}/glob`
-const app_name = yargs.app
+require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') })
 
-if(app_name && !fs.existsSync(`${apps_path}/${app_name}`))
-    throw new Error('Not active app!')
+const REACT_DIST = 'build'
+const STATIC_DIST = 'build_static'
+const DIST = `../${REACT_DIST}`
 
-const input = `${apps_path}/${app_name || '**'}`
-const output = `../build${app_name ? `/${app_name}` : ''}`
+let mode = 'development'
 
-const IsDevelopment = (process.env.NODE_ENV = yargs.mode || 'development') === 'development'
+gulp.task('mode:set-dev', cb => { mode = 'development', cb()})
+gulp.task('mode:set-prod', cb => { mode = 'production', cb()})
 
-gulp.task('livereload', () => {
-    browserSync.create()
+gulp.task('clean:react-build', cb => rimraf(REACT_DIST, cb));
+gulp.task('clean:static-build', cb => rimraf(STATIC_DIST, cb))
+gulp.task('clean:dist', cb => rimraf(DIST, cb))
 
-    browserSync.init({
-        server: {
-            baseDir: `${output}`
-        },
-        files: [
-            `${output}/**/*.*`
-        ]
-    })
-})
+gulp.task('livereload:static', () => {
+  browserSync.create()
 
-gulp.task('glob', () => {
-    const apps = glob.sync('*', { cwd: apps_path, ignore: ['404', '500'] })
-
-    !app_name ?
-        apps.forEach((app) => {
-            gulp.src(`${glob_path}/**/*.*`)
-                .pipe(gulp.dest(`${output}/${app}/glob`))
-        }) :
-        gulp.src(`${glob_path}/**/*.*`).pipe(gulp.dest(`${output}/glob`))
-
-    return Promise.resolve()
-})
-
-gulp.task('html', () => {
-    return gulp.src(`${input}/index.html`)
-        .pipe(gulp.dest(output))
-})
-
-gulp.task('styles', () => {
-    const plugins = [
-        require('postcss-import')()
+  browserSync.init({
+    server: {
+      baseDir: STATIC_DIST
+    },
+    files: [
+      `${STATIC_DIST}/**/*.*`
     ]
-
-    return gulp.src(`${input}/styles/**/[^_]*.less`)
-        .pipe(plumber())
-        .pipe(less())
-        .pipe(autoprefixer())
-        .pipe(postcss(plugins))
-        .pipe(gulp.dest(!app_name ? output : `${output}/styles`))
+  })
 })
 
-gulp.task('stylesLint', () => {
-    return gulp.src(`${input}/styles/**/*.less`)
-        .pipe(styleLint({
-            configFile: '.stylelintrc',
-            failAfterError: false,
-            debug: true,
-            syntax: 'less',
-            reporters: [
-                { formatter: 'string', console: true }
-            ]
-        }))
+gulp.task('build-react', async cb => {
+  await execa('npm', ['run', 'build:react'], { stdio: 'inherit' });
+
+  cb()
 })
 
-gulp.task('js', () => {
-    return gulp.src(`${input}/js/**/*.js`)
-        .pipe(plumber())
-        .pipe(babel({
-            filename: 'babel.config.js'
-        }))
-        .pipe(gulpif(!IsDevelopment, uglify()))
-        .pipe(gulp.dest(!app_name ? output : `${output}/js`));
+gulp.task('build:static-files', () =>
+  gulp.src('./static/statics/**/*.*')
+    .pipe(gulp.dest(`./${STATIC_DIST}/statics/`))
+)
+
+gulp.task('build:static:html', () =>
+  gulp.src('./static/pages/**/index.html')
+    .pipe(plumber())
+    .pipe(templates({
+      STATIC_BASE_URL: mode === 'development' ? '..' : '/static',
+      GLOBS_LIBS_BASE_URL: mode === 'development' ? '../../statics/libs' : '/general/libs',
+      GLOBS_STYLES_BASE_URL: mode === 'development' ? '../../statics/styles' : '/general/styles',
+    }))
+    .pipe(gulpIf(mode === 'production', htmlMin({
+      collapseWhitespace: true,
+      keepClosingSlash: true,
+      removeComments: true,
+      removeEmptyAttributes: true
+    })))
+    .pipe(gulp.dest(`./${STATIC_DIST}/pages/`))
+)
+
+gulp.task('build:static:js', () =>
+  gulp.src('./static/pages/**/*.js')
+    .pipe(plumber())
+    .pipe(babel({
+      filename: 'babel.config.js'
+    }))
+    .pipe(gulpIf(mode === 'production', uglify()))
+    .pipe(gulp.dest(`./${STATIC_DIST}/pages/`))
+)
+
+gulp.task('mv:static', () => gulp.src(`./${STATIC_DIST}/**/*.*`).pipe(gulp.dest(`${DIST}/static`)))
+gulp.task('mv:app', () => gulp.src(`./${REACT_DIST}/**/*.*`).pipe(gulp.dest(`${DIST}/app`)))
+
+gulp.task('watch:static', () => {
+  watch('./static/pages/**/index.html', gulp.series(['build:static:html']))
+  watch('./static/pages/**/*.js', gulp.series(['build:static:js']))
+  watch('./static/statics/**/*.*', gulp.series(['build:static-files']))
 })
 
-gulp.task('watch', () => {
-    watch(`${input}/styles/**/*.less`, gulp.series('stylesLint', 'styles'));
-    watch(`${input}/*.html`, gulp.series('html'));
-    watch(`${input}/js/**/*.js`, gulp.series('js'));
-    watch(`${glob_path}/**/*.*`, gulp.series('glob'));
-});
+gulp.task('dev:static', gulp.series([
+  'mode:set-dev',
+  'clean:static-build',
+  gulp.parallel([
+    'build:static-files',
+    'build:static:html',
+    'build:static:js'
+  ]),
+  gulp.parallel([
+    'livereload:static',
+    'watch:static',
+  ])
+]))
 
-const tasks = ['html', 'stylesLint', 'styles', 'js', 'glob']
-IsDevelopment && tasks.push(gulp.series('watch'))
-app_name && IsDevelopment && tasks.push(gulp.series('livereload'))
+gulp.task('build:react:app', gulp.series([
+    'mode:set-prod',
+    'clean:react-build',
+    'build-react',
+    'mv:app',
+    'clean:react-build',
+]))
 
-exports.default = gulp.series(...tasks)
+gulp.task('build:static', gulp.series([
+    'mode:set-prod',
+    'clean:static-build',
+    gulp.parallel([
+        'build:static-files',
+        'build:static:html',
+        'build:static:js'
+    ]),
+    'mv:static',
+    'clean:static-build',
+]))
+
+gulp.task('build', gulp.series([
+  'mode:set-prod',
+  gulp.parallel([
+    'clean:react-build',
+    'clean:static-build',
+    'clean:dist'
+  ]),
+  gulp.series([
+    'build-react',
+    gulp.parallel([
+      'build:static-files',
+      'build:static:html',
+      'build:static:js'
+    ])
+  ]),
+  gulp.parallel([
+    'mv:static',
+    'mv:app'
+  ]),
+  gulp.parallel([
+    'clean:react-build',
+    'clean:static-build'
+  ])
+]))

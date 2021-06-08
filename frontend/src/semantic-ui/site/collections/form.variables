@@ -1,0 +1,16 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@borderColor: @gray65;
+@focusedFormBorderColor: @gray55;
+
+@labelFontWeight: normal;
+@labelDistance: 12px;
+
+@formErrorBackground: #ffffff;
+@formErrorBorder: @negativeBorderColor;
+@formErrorColor: @textColor;
+
+@inputErrorFocusBackground: #ffffff;
+@inputErrorFocusColor: @textColor;

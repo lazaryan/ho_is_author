@@ -1,0 +1,10 @@
+.ui.segment.basic {
+  padding-left: 0;
+  padding-right: 0;
+
+  &.error {
+    display: flex;
+    justify-content: center;
+    color: #e34b3b;
+  }
+}

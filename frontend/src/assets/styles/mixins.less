@@ -1,0 +1,29 @@
+.a-bordered-bottom(@color, @paddingBottom, @borderBottomColor, @fillType: solid) {
+  color: @color;
+  padding-bottom: @paddingBottom;
+  border-bottom: 1px @fillType @borderBottomColor;
+
+  &:hover {
+    border-bottom: 1px @fillType transparent;
+  }
+}
+
+.shadow-top-bottom(@color, @paddingTop, @paddingBottom) {
+  box-shadow:
+    inset 0 @paddingTop @paddingTop -@paddingTop @color,
+    inset 0 -@paddingBottom @paddingBottom -@paddingBottom @color;
+}
+
+.spacedValues(@at) {
+  .spaced-@{at} {
+    &-sm {
+      margin-@{at}: @spacingSm;
+    }
+    &-md {
+      margin-@{at}: @spacingMd;
+    }
+    &-xl {
+      margin-@{at}: @spacingXl;
+    }
+  }
+}

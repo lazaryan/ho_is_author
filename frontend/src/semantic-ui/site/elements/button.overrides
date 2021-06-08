@@ -1,0 +1,21 @@
+.ui.button.basic {
+  padding: @spacingXs 0!important;
+
+  &:hover span {
+    border-bottom: none!important;
+  }
+}
+
+.ui.button.primary {
+  color: #fff;
+}
+
+.ui.button.center-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & .ion-icon {
+    display: flex;
+  }
+}

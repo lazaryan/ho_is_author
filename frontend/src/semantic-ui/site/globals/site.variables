@@ -1,0 +1,28 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+/*-------------------
+       Fonts
+--------------------*/
+
+@fontName          : officinaserifcregular;
+@fontSmoothing     : antialiased;
+
+@headerFont        : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@pageFont          : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+
+@importGoogleFonts : false;
+
+@linkColor: #8c8c8c;
+@linkColor: #6c6c6c;
+@headerColor: #040404;
+
+@primaryColor: #2889F0;
+@lightPrimaryColor: #79abe0be;
+@negativeBorderColor : #e33333;
+
+@trackBackground: transparent;
+@thumbBackground: @gray85;
+@thumbHoverBackground: @gray85;
+@customScrollbarWidth: 6px;

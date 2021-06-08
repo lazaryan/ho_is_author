@@ -1,0 +1,14 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@background: #e6e6e6;
+
+@borderWidth: 0;
+@borderShadow: none;
+@shadowShadow: none;
+@boxShadow:
+  @borderShadow,
+  @shadowShadow
+;
+

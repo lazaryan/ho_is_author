@@ -1,75 +1,61 @@
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
-const uuid = require('uuid')
+import passport from 'passport'
+import { Strategy as LocalStrategy } from 'passport-local'
+import { v4 as uuidv4 } from 'uuid'
 
-const User = require('../models/user')
+import User from '../models/user'
 
-module.exports = function(passport){
-    passport.serializeUser((user, done) => {
-        done(null, user.id)
-    })
+passport.serializeUser((user, done) => {
+  done(null, user.id)
+})
 
-    passport.deserializeUser(function(id, done) {
-        User.findById(id, (err, user) => {
-            done(err, user);
-        })
-    })
+passport.deserializeUser(function(id, done) {
+  User.findById(id, (err, user) => {
+    done(err, user);
+  })
+})
 
-    passport.use('register', new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'password',
-        passReqToCallback: true
-    },
-    (req, email, password, done) => {
-        User.findOne({ email }, (err, user) => {
-            if (err) {
-                return done(err)
-            }
+passport.use('login', new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, async (email, password, done) => {
+  User.findOne({ email }, (err, user) => {
+    if (err) {
+      return done(err)
+    }
 
-            if (user) {
-                return done(null, false, req.flash('registerMessage','Email is already taken...' ))
-            } else {
-                const newUser = new User()
+    if (!user) {
+      return done(null, false, { message: 'Incorrect username.' })
+    }
 
-                const { name } = req.body
+    if (!user.validPassword(password)) {
+      return done(null, false, { message: 'Incorrect password !' })
+    }
 
-                newUser.email = email
-                newUser.password = newUser.generateHash(password)
-                newUser.entity_id = uuid.v4()
+    return done(null, user);
+  })
+}))
 
-                name && (newUser.name = name)
+passport.use('register', new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, async (email, password, done) => {
+  User.findOne({ email }, (err, user) => {
+    if (err) {
+      return done(err)
+    }
 
-                newUser.save(err => {
-                    if(err) {
-                        throw err
-                    }
-                
-                    return done(null, newUser)
-                })
-            }
-        })
-    }))
+    if (user) {
+      return done(null, false, { message: 'Email is already taken...' })
+    } else {
+      const newUser = new User()
 
-    passport.use('login', new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'password',
-        passReqToCallback:true
-    },
-    (req, email, password, done) => {
-        User.findOne({ email }, (err, user) => {
-            if (err) {
-                return done(err)
-            }
+      newUser.email = email
+      newUser.password = newUser.generateHash(password)
+      newUser.entity_id = uuidv4()
 
-            if (!user) {
-                return done(null, false, req.flash('loginMessage','Incorrect username.' ))
-            }
+      newUser.save(err => {
+        if(err) {
+          return done(error)
+        }
+    
+        return done(null, newUser)
+      })
+    }
+  })
+}))
 
-            if (!user.validPassword(password)) {
-                return done(null, false,  req.flash('loginMessage','Incorrect password !' ))
-            }
-
-            return done(null, user);
-        })
-    }))
-}
+export default passport;

@@ -1,0 +1,23 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+/* Close Icon */
+@closeOpacity: 1;
+@closeSize: 2.8em;
+@closeColor: @gray55;
+
+@closeTop: 0;
+@closeRight: @spacingUnit * 4;
+
+@contentPadding: @spacingUnit * 20 @spacingUnit * 6 0 @spacingUnit * 6;
+@headerPadding: @spacingUnit * 12 @spacingUnit * 12 0 @spacingUnit * 12;
+
+@headerFontSize: @modalHeadingFontSize;
+@headerFontWeight: normal;
+@headerBorder: none;
+
+@actionBorder: none;
+@actionBackground: transparent;
+@actionPadding: @spacingUnit * 4 0 @spacingUnit * 12 0;
+@actionAlign: center;

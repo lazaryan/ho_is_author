@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
+import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     entity_id: {
         type: String,
         unique: true
@@ -10,18 +10,18 @@ const userSchema = mongoose.Schema({
         type: String,
         unique: true
     },
-    password: {
-        type: String
-    },
+    password: String,
+    about: String,
+    photo: String,
     name: String
 })
 
 userSchema.methods.generateHash = function(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
 }
 
 userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password)
 }
 
-module.exports = mongoose.model('User', userSchema)
+export default mongoose.model('User', userSchema)

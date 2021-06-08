@@ -1,0 +1,36 @@
+.ui.table {
+  border: none;
+
+  thead {
+    margin-bottom: @spacingMd;
+        
+    th {
+      background-color: #fff;
+      font-weight: normal;
+      color: @gray55;
+      border-bottom-width: 2px;
+      font-size: 15px;
+    }
+  }
+
+  tbody tr {
+    border-top: none;
+
+    td {
+      border: none;
+    }
+
+    .action-icons {
+      opacity: 0;
+      padding: 0!important;
+    }
+
+    &:hover {
+      background-color: @lightPrimaryColor;
+
+      .action-icons {
+        opacity: 1;
+      }
+    }
+  }
+}

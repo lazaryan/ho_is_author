@@ -1,0 +1,11 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+@promptBorderRadius: @defaultBorderRadius;
+@resultsBorderRadius: 5px;
+@resultsBoxShadow: @boxShadowSegment;
+@resultLineHeight: 1.2;
+@resultDescriptionDistance: @spacingUnit;
+@resultHoverBackground: @lightPrimaryColor;
+@actionHoverBackground: @lightPrimaryColor;

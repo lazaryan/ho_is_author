@@ -1,0 +1,19 @@
+/*******************************
+         Theme Overrides
+*******************************/
+
+.ui.form .field.error .prompt.label,
+.ui.red.labels .label,
+.ui.red.label {
+  background-color: #e33333 !important;
+  color: #ffffff!important;
+  font-family: @fontFamilyAlt;
+  font-size: 0.85em;
+  font-weight: normal;
+}
+
+.ui.red.label.pointing.form-error-label {
+  position: absolute;
+  top: 100%;
+  z-index: 199;
+}

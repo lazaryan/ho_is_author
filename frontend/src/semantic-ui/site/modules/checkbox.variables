@@ -1,0 +1,38 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@labelDistance: 1.6em;
+
+@toggleLaneBackground: @gray75;
+@toggleHoverColor: @gray75;
+@toggleOnLaneColor: #ffdd77;
+@toggleOnFocusLaneColor: #ffdd77;
+
+@checkboxBorder: 1px solid @gray65;
+@checkboxPressedBorderColor: @gray65;
+@checkboxHoverBorderColor: @gray55;
+@checkboxFocusBorderColor: @gray65;
+
+@toggleLaneWidth: 2.4rem;
+@toggleHandleSize: 1.3rem;
+@toggleTransitionDuration: 0.15s;
+
+@toggleWidth: 2.2rem;
+@toggleLaneVerticalOffset: 0.075rem;
+
+@toggleLaneHeight: 1.15rem;
+@toggleLabelDistance: @toggleLaneWidth + 0.7rem;
+
+@toggleOffOffset: 0.02rem;
+@toggleOnOffset: (@toggleLaneWidth - @toggleHandleSize) + 0.0rem;
+
+@selectedBorderColor: #ffdd77;
+
+@checkboxActiveBackground: @selectedBorderColor;
+@checkboxActiveFocusBorderColor: @selectedBorderColor;
+@checkboxActiveFocusBackground: @selectedBorderColor;
+@checkboxActiveBorderColor: @selectedBorderColor;
+
+@radioSize: 20px;
+@bulletScale: (6 / 15);

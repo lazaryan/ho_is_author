@@ -1,0 +1,12 @@
+.ui.dropdown.selection {
+  .ion-icon {
+    position: absolute;
+    right: 10px;
+  }
+}
+
+.ui.primary.selection.dropdown {
+  .item:first-child {
+    border-color: transparent!important;
+  }
+}

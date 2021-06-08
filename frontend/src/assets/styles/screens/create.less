@@ -1,0 +1,62 @@
+.create-screen {
+  textarea {
+    width: 100%;
+    resize: none;
+    height: 100px;
+    border: 1px solid @gray75;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: @spacingSm;
+
+    &:active,
+    &:focus,
+    &:focus-visible {
+      border-color: @gray75!important;
+      outline: none;
+    }
+  }
+
+  .info-segment {
+    .right-column {
+      display: flex!important;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+  }
+
+  .history-segment {
+    height: 800px;
+
+    .empty-card {
+      cursor: pointer;
+    }
+
+    .history-card {
+      .ui.input {
+        margin-bottom: @spacingSm;
+      }
+
+      .inline-field {
+        display: flex;
+
+        .input {
+          width: 100%;
+          margin-right: @spacingMd;
+        }
+
+        .ion-icon {
+          cursor: pointer;
+        }
+      }
+
+      .actions {
+        margin-top: @spacingMd;
+
+        .ui.button:not(:last-child) {
+          margin-right: @spacingSm;
+        }
+      }
+    }
+  }
+}

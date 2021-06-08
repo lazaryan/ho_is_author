@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+    <link rel="stylesheet" href="<%= GLOBS_STYLES_BASE_URL %>/main.css">
+    <link rel="stylesheet" href="<%= GLOBS_STYLES_BASE_URL %>/form.css">
+
+    <script async src="<%= GLOBS_LIBS_BASE_URL %>/axios/axios.min.js"></script>
+</head>
+<body>
+    <div class="wrapper wrapper_center">
+        <div class="form register-form">
+            <div class="form__body">
+                <div class="form__header">
+                    <p class="form__title">Регистрация</p>
+                </div>
+                <div style="width: 80%; margin-bottom: 30px;">
+                    <a href="/">
+                        <button class="form-submit form-submit_unaccent">На главную</button>
+                    </a>
+                </div>
+                <div class="form__item form__item_require">
+                    <input type="text" name="email" id="email" data-name="Почта" class="form__item-field js-form__item-field js-form-require">
+                    <label class="form__item-title form__item-title_left" for="email">Почта</label>
+                </div>
+                <div class="form__item form__item_require">
+                    <input type="password" name="password" id="password" data-name="Пароль" class="form__item-field js-form__item-field js-form-require">
+                    <label class="form__item-title form__item-title_left" for="email">Пароль</label>
+                </div>
+                <div class="column_center">
+                    <button class="form-submit js-form__submit">Регистрация</button>
+                    <a href="/login" class="link">Уже есть учетная запись?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="<%= STATIC_BASE_URL %>/register/js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: @customScrollbarWidth;
+  height: @customScrollbarHeight;
+}
+
+::-webkit-scrollbar-track {
+  background: @trackBackground;
+  border-radius: @trackBorderRadius;
+}
+
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  border-radius: @thumbBorderRadius;
+  background: @thumbBackground;
+  transition: @thumbTransition;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: @thumbInactiveBackground;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: @thumbHoverBackground;
+}

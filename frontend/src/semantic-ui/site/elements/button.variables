@@ -1,0 +1,24 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@backgroundColor: @gray85;
+@hoverBackgroundColor: @gray75;
+@downBackgroundColor: @gray75;
+
+@primaryTextColor: @dark10;
+@lightPrimaryTextColor: @dark10;
+
+@fontWeight: normal;
+@fontFamily: @fontFamilyNormal !important;
+
+@basicBackground: transparent none;
+@basicDownBackground: transparent none;
+@basicHoverBackground: transparent none;
+@basicActiveBackground: transparent none;
+@basicBorder: none;
+@basicBoxShadow: none;
+@basicHoverBoxShadow: none;
+@basicFocusBoxShadow: none;
+@basicActiveBoxShadow: none;
+@basicDownBoxShadow: none;

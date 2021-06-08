@@ -1,0 +1,17 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@secondaryPointingActiveBorderColor: @primaryColor;
+
+@secondaryPointingItemVerticalPadding: @spacingMd;
+@secondaryPointingItemHorizontalPadding: @spacingLg;
+
+@secondaryPointingActiveFontWeight: normal;
+
+@activeItemBackground: @transparentBlack;
+
+@secondaryPointingHoverTextColor: @textColor;
+@secondaryPointingActiveTextColor: @selectedTextColor;
+
+@textMenuItemColor: #f00;

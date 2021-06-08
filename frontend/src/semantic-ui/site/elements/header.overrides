@@ -1,0 +1,19 @@
+@headerColor: #040404;
+
+h1.ui.header {
+  line-height: 56px;
+  color: @headerColor;
+}
+
+h2.ui.header {
+  line-height: 56px;
+  color: @headerColor;
+}
+
+.ui.header.require {
+  &::after {
+    content: '*';
+    padding-left: 2px;
+    color: #a22;
+  }
+}

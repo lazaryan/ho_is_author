@@ -1,0 +1,6 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@shapeBorderColor: @primaryColor transparent transparent;
+@invertedShapeBorderColor: @primaryColor transparent transparent;

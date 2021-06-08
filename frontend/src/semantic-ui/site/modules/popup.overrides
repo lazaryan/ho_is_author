@@ -1,0 +1,62 @@
+.ui.popup.basic {
+  padding: 0;
+  min-width: 300px;
+  width: max-content;
+  z-index: 100;
+
+  > .header {
+    padding: @spacingXs;
+  }
+
+  .ui.input.search {
+    padding: @spacingUnit;
+    margin: @spacingUnit;
+  }
+
+  .ui.divider {
+    margin: @spacingUnit 0;
+  }
+
+  .action-list {
+    .ui.grid {
+      margin: 0;
+    }
+
+    .item {
+      cursor: pointer;
+      word-wrap: break-word;
+
+      .action-icons {
+        opacity: 0;
+      }
+
+      .ion-icon {
+        margin-right: @spacingXs;
+      }
+
+      .ui.button.basic {
+        padding: 0!important;
+      }
+
+      &:hover {
+        background-color: @lightPrimaryColor;
+
+        .action-icons {
+          opacity: 1;
+        }
+      }
+
+      &.button {
+        padding: @spacingMd;
+      }
+    }
+  }
+
+  .empty-label {
+    padding: @spacingXs;
+  }
+
+  .footer {
+    padding: @spacingXs;
+  }
+}

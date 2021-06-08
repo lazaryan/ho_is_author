@@ -1,0 +1,58 @@
+& > .content {
+  padding: @spacingXl;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+
+.main-header {
+  background-color: #fff;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  padding: @spacingMd @spacingMd;
+
+  .ui.header {
+    margin: 0;
+    font-size: 24px;
+    color: @primaryColor;
+  }
+
+  .ui.dropdown {
+    &.active {
+      .toggle-menu > .ion-icon svg.user-icon path {
+        fill: @primaryColor;
+      }
+    }
+
+    .toggle-menu {
+      display: flex;
+      border: 1px solid @gray85;
+      padding: @spacingXs @spacingSm!important;
+      font-size: 1.2rem;
+      align-items: center;
+  
+      &:hover {
+        > .ion-icon svg.user-icon path {
+          fill: @primaryColor;
+        }
+      }
+  
+      > .ion-icon svg.user-icon {
+        margin-right: @spacingUnit;
+      }
+  
+      > .user-name {
+        max-width: 500px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .menu {
+      right: 0;
+      left: auto;
+    }
+  }
+}

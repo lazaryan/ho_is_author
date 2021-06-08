@@ -1,0 +1,152 @@
+@mainPrefix: hoIsAuthor-;
+@fontFamily: officinaserifcregular, serif;
+@fontFamilyNormal: officinaserifcregular, serif; // just a copy of @fontFamily to use in some places
+@fontFamilyBold: officinaserifcbold, serif;
+@fontFamilyAlt: Arial, Helvetica, sans-serif;
+
+//colors
+@primaryColor: #2889F0;
+@lightPrimaryColor: #79abe0be;
+@inverseColor: #333;
+@backgroundColor: #f5f5f5;
+@errorColor: #e33333;
+@borderColor: #b8b8b8;
+
+@dark10: #282828;
+@dark20: #484848;
+
+@gray40: #707070;
+@gray45: #787878;
+@gray55: #8c8c8c;
+@gray60: #989898;
+@gray65: #b8b8b8;
+@gray75: #d4d4d4;
+@gray85: #e3e3e3;
+@gray90: #ebebeb;
+@gray95: #f2f2f2;
+
+//spacing
+@spacingUnit: 5px;
+@spacingXs: @spacingUnit * 2;
+@spacingSm: @spacingUnit * 3;
+@spacingMd: @spacingUnit * 4;
+@spacingLg: @spacingUnit * 5;
+@spacingXl: @spacingUnit * 6;
+
+//font sizes
+@xsFontSize: 12px;
+@smFontSize: 14px;
+@mdFontSize: 16px;
+@lgFontSize: 20px;
+
+@fontSizeCheckbox: 18px;
+
+@cardHeadingColor: #414144;
+
+@colorGreen: #549A3B;
+@colorRed: #e34b3b;
+
+@colorDisabled: #cecece;
+@colorMalfunction: @colorRed;
+@colorWorking: #999999;
+@colorExcel: #197342;
+
+@modalHeadingFontSize: 48px;
+@columnGenericWidth: 465px;
+
+@boxShadowSegment: rgba(0, 0, 0, 0.15) 0 3px 5px 0;
+
+@import 'mixins';
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+.hoIsAuthor {
+  position: relative;
+  font-size: 16px;
+  line-height: normal;
+  margin: 0 auto;
+  padding: 0;
+
+  /* Global */
+  & { @import "~semantic-ui-less/definitions/globals/reset"; }
+  & { @import "~semantic-ui-less/definitions/globals/site"; }
+
+  font-family: @fontFamily;
+  height: 100%;
+  color: @dark10;
+
+  /* Elements */
+  & { @import "~semantic-ui-less/definitions/elements/button"; }
+  & { @import "~semantic-ui-less/definitions/elements/container"; }
+  & { @import "~semantic-ui-less/definitions/elements/divider"; }
+  //& { @import "~semantic-ui-less/definitions/elements/flag"; }
+  & { @import "~semantic-ui-less/definitions/elements/header"; }
+  & { @import "~semantic-ui-less/definitions/elements/icon"; }
+  //& { @import "~semantic-ui-less/definitions/elements/image"; }
+  & { @import "~semantic-ui-less/definitions/elements/input"; }
+  & { @import "~semantic-ui-less/definitions/elements/label"; }
+  & { @import "~semantic-ui-less/definitions/elements/list"; }
+  & { @import "~semantic-ui-less/definitions/elements/loader"; }
+  & { @import "~semantic-ui-less/definitions/elements/placeholder"; }
+  //& { @import "~semantic-ui-less/definitions/elements/rail"; }
+  //& { @import "~semantic-ui-less/definitions/elements/reveal"; }
+  & { @import "~semantic-ui-less/definitions/elements/segment"; }
+  //& { @import "~semantic-ui-less/definitions/elements/step"; }
+
+  /* Collections */
+  //& { @import "~semantic-ui-less/definitions/collections/breadcrumb"; }
+  //& { @import "~semantic-ui-less/definitions/collections/form"; }
+  & { @import "~semantic-ui-less/definitions/collections/grid"; }
+  & { @import "~semantic-ui-less/definitions/collections/menu"; }
+  & { @import "~semantic-ui-less/definitions/collections/message"; }
+  //& { @import "~semantic-ui-less/definitions/collections/table"; }
+
+  /* Views */
+  //& { @import "~semantic-ui-less/definitions/views/ad"; }
+  //& { @import "~semantic-ui-less/definitions/views/card"; }
+  //& { @import "~semantic-ui-less/definitions/views/comment"; }
+  //& { @import "~semantic-ui-less/definitions/views/feed"; }
+  //& { @import "~semantic-ui-less/definitions/views/item"; }
+  //& { @import "~semantic-ui-less/definitions/views/statistic"; }
+
+  /* Modules */
+  & { @import "~semantic-ui-less/definitions/modules/accordion"; }
+  //& { @import "~semantic-ui-less/definitions/modules/checkbox"; }
+  //& { @import "~semantic-ui-less/definitions/modules/dimmer"; }
+  & { @import "~semantic-ui-less/definitions/modules/dropdown"; }
+  //& { @import "~semantic-ui-less/definitions/modules/embed"; }
+  & { @import "~semantic-ui-less/definitions/modules/modal"; }
+  //& { @import "~semantic-ui-less/definitions/modules/nag"; }
+  & { @import "~semantic-ui-less/definitions/modules/popup"; }
+  //& { @import "~semantic-ui-less/definitions/modules/progress"; }
+  //& { @import "~semantic-ui-less/definitions/modules/rating"; }
+  & { @import "~semantic-ui-less/definitions/modules/search"; }
+  //& { @import "~semantic-ui-less/definitions/modules/shape"; }
+  //& { @import "~semantic-ui-less/definitions/modules/sidebar"; }
+  //& { @import "~semantic-ui-less/definitions/modules/sticky"; }
+  & { @import "~semantic-ui-less/definitions/modules/tab"; }
+  & { @import "~semantic-ui-less/definitions/modules/transition"; }
+
+  & .ui.grid {
+    margin: 0;
+  }
+
+  & {
+    background-color: @gray95;
+    min-height: 100vh;
+
+    .a-common-bordered() {
+      .a-bordered-bottom(@gray55, @spacingUnit, @gray55);
+    }
+
+    box-sizing: border-box;
+
+    @import 'common';
+    @import 'screens/create';
+  }
+
+  @import 'error';
+}
