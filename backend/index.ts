@@ -16,6 +16,10 @@ const args = require('yargs/yargs')(process.argv.slice(2))
   .default('rebuild', false)
   .argv
 
+if (!process.env.DATABASE_URL) {
+  throw new Error('Add DATABASE_URL environment')
+}
+
 if (args.rebuild || !fs.existsSync(path.resolve(__dirname, '..', process.env.FRONTEND_BUILD_DIR || 'build'))) {
   console.log('\x1b[36m%s\x1b[0m', '\t\tRUN BUILD FRONTEND!!!!')
 
@@ -25,14 +29,14 @@ if (args.rebuild || !fs.existsSync(path.resolve(__dirname, '..', process.env.FRO
 console.log('\x1b[36m%s\x1b[0m', '\n\t\tRUN SERVER!!!!\n')
 
 mongoose.set('useCreateIndex', true)
-mongoose.connect('mongodb://localhost:27017/ho_is_author', {
+mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 
 try {
-  app.listen(3000, () => {
-      console.log(`Application run on port 3000`)
+  app.listen(process.env.SERVER_PORT || 3000, () => {
+      console.log(`Application run on port ${process.env.SERVER_PORT || 3000}`)
   })
 } catch(err) {
   process.exitCode = 1
