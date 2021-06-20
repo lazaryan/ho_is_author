@@ -24,7 +24,7 @@ const MainScreen: FC = () => {
 
   useEffect(() => {
     loadHistory()
-  }, [loadHistory])
+  }, []);
   
   return (<ErrorBoundary contentId="MAIN_SCREEN">
     <div className="main-screen">

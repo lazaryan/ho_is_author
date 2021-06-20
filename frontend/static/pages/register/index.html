@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="<%= GLOBS_STYLES_BASE_URL %>/form.css">
 
     <script async src="<%= GLOBS_LIBS_BASE_URL %>/axios/axios.min.js"></script>
+    <script async src="<%= GLOBS_LIBS_BASE_URL %>/email_validator/index.js"></script>
+    <script defer src="<%= STATIC_BASE_URL %>/register/js/index.js"></script>
 </head>
 <body>
     <div class="wrapper wrapper_center">
@@ -29,6 +31,19 @@
                     <input type="password" name="password" id="password" data-name="Пароль" class="form__item-field js-form__item-field js-form-require">
                     <label class="form__item-title form__item-title_left" for="email">Пароль</label>
                 </div>
+                <div class="form__item">
+                    <input type="text" name="name" id="name" data-name="Имя" maxlength="150" class="form__item-field js-form__item-field">
+                    <label class="form__item-title form__item-title_left" for="name">Имя</label>
+                </div>
+                <div class="form__item form__item_not-line form__item_not-reverse form__item_radios">
+                    <label class="form__item-title form__item-title_left">Роль</label>
+                    <div class="radio-wrapper">
+                        <input type="radio" checked value="user" name="role" id="role_user" data-name="Роль" class="js-form__item-field" />
+                        <label class="select-value" for="role_user">Пользователь</label>
+                        <input type="radio" value="author" name="role" id="role_author" data-name="Роль" class="js-form__item-field" />
+                        <label class="select-value" for="role_author">Автор</label>
+                    </div>
+                </div>
                 <div class="column_center">
                     <button class="form-submit js-form__submit">Регистрация</button>
                     <a href="/login" class="link">Уже есть учетная запись?</a>
@@ -36,7 +51,5 @@
             </div>
         </div>
     </div>
-
-    <script src="<%= STATIC_BASE_URL %>/register/js/index.js"></script>
 </body>
 </html>

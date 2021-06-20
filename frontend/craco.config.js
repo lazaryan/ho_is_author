@@ -54,7 +54,7 @@ module.exports = {
     port: 8080,
     host: '0.0.0.0',
     proxy: {
-      ...proxyUrls.reduce((acc, url) => (acc[url] = `http://localhost:3000`, acc), {})
+      ...proxyUrls.reduce((acc, url) => (acc[url] = `http://localhost:${process.env.SERVER_PORT}`, acc), {})
     }
   }
 }

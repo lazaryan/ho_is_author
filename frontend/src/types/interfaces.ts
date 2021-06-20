@@ -20,6 +20,7 @@ export interface IUser {
   name?: string;
   about?: string;
   photo?: string;
+  role?: string;
 }
 
 export interface ICard {
@@ -37,6 +38,12 @@ export interface IHistory {
   autors?: string;
   keywords?: string;
   cards?: ICard;
+}
+
+export interface ILoadHistory extends IHistory {
+  author_id: string;
+  author_name: string;
+  created?: string;
 }
 
 export interface IKeyValue<T = any> {

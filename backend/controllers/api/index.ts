@@ -2,7 +2,7 @@ import { RouteAction } from 'routes';
 
 import { login, logout, register } from './passport';
 import { getUserInfo } from './user';
-import { createHistory, getHistories } from './history';
+import { createHistory, getHistories, getHistory } from './history';
 
 const routes: RouteAction[] = [
     {
@@ -34,6 +34,11 @@ const routes: RouteAction[] = [
         path: '/api/histories',
         method: 'get',
         action: getHistories
+    },
+    {
+        path: '/api/history',
+        method: 'get',
+        action: getHistory
     }
 ]
 

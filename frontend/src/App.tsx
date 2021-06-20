@@ -6,15 +6,17 @@ import MainHeader from 'components/MainHeader';
 import PrivateRouter from 'components/PrivateRouter';
 import { ApiMethods, useApiGet } from 'hooks/useApi';
 import { getUser } from 'reducers/actions/user';
-import { authSelector } from 'selectors/user';
+import { authSelector, roleSelector } from 'selectors/user';
 import MainScreen from 'screens/MainScreen';
 import CreateScreen from 'screens/CreateScreen';
 import AdminScreen from 'screens/AdminScreen';
+import HistoryScreen from 'screens/HistoryScreen';
 import NotFoundScreen from 'screens/NotFoundScreen';
 
 const App: FC = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(authSelector);
+  const role = useSelector(roleSelector);
 
   const userFetcher = useApiGet(ApiMethods.GET_USER)
 
@@ -30,8 +32,9 @@ const App: FC = () => {
           <MainScreen />
         </Route>
         <PrivateRouter exact path="/admin" component={AdminScreen} active={isAuth} />
-        <Route exact path="/create">
-          <CreateScreen />
+        <PrivateRouter exact path="/create" component={CreateScreen} active={role === 'author'} />
+        <Route exact path="/history/:id">
+          <HistoryScreen />
         </Route>
         <Route>
           <NotFoundScreen />

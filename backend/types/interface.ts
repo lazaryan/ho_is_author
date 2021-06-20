@@ -6,6 +6,7 @@ export interface User {
   about?: string;
   photo?: string;
   name?: string;
+  role?: string;
 }
 
 export interface IUser extends User {
@@ -16,6 +17,7 @@ export interface IUser extends User {
 export interface IHistory {
   entity_id: string;
   author_id: string;
+  author_name: string;
   title: string;
   description?: string;
   cards?: string;

@@ -28,14 +28,14 @@ app.use(session({
     resave: true,
     // using store session on MongoDB using express-session + connect
     store: MongoStore.create({
-        mongoUrl: 'mongodb://localhost:27017/ho_is_author'
+        mongoUrl: process.env.DATABASE_URL
     })
 }))
 app.use(passport.initialize())
 app.use(passport.session({
     //@ts-ignore
     store: MongoStore.create({
-        mongoUrl: 'mongodb://localhost:27017/ho_is_author'
+        mongoUrl: process.env.DATABASE_URL
     })
 }))
 

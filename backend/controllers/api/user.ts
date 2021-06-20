@@ -15,7 +15,8 @@ export const getUserInfo = ({ req, res }: Action) => {
         email: user.email || '',
         name: user.name || '',
         about: user.about || '',
-        photo: user.photo || ''
+        photo: user.photo || '',
+        role: user.role || 'user'
       } : {})
     }
   }
